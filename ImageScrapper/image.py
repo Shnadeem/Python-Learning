@@ -23,3 +23,17 @@ url_images = get_image_url(driver,apps_param['search_url'],
 download = image_download(driver,url_images, apps_param['limit'], apps_param['dpath'])
 
 print("{} images of {} downloaded successfully.".format(download,apps_param['search']))
+
+## Execution
+#1. Create project in PyCharm with conda (virtual environment) python 3.8
+#2. Open terminal of this new invironment and run requirements.txt file (pip install -r requirements.txt)
+#3. download the files and folder structure as given here. Place it at home foolder of your new vertual environment
+#4. Default configurations:
+# 4.1 Seach: Eagle
+# 4.2 Limit: 10
+#5. Below are syntax to be executed for this code to run
+# 5.1 With default parameter
+#     python image.py
+# 5.2 With override parameter
+#     python image.py -s Dog -l 5  (download 5 images of Dog)
+
