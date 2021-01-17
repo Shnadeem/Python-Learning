@@ -82,14 +82,12 @@ def image_download(driver,image_url,limit,location):
     i = 0
     for img in image_url:
         try:
-           # print("Before:",limit, i, img)
             urlretrieve(img, location + str(int(time.time())) + "_" + str(i) + ".jpg")
         except:
             continue
         else:
             i += 1
             if i >= int(limit):
-               # print("After:", i, img)
                 driver.quit()
                 return i
 
