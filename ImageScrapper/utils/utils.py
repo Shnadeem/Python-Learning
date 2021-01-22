@@ -13,7 +13,7 @@ apps_param = {
     'result_locator':'img.Q4LuWd',
     'image_url_locator':'img.n3VNCb',
     'search':'Eagle',
-    'limit':10,
+    'limit':5,
     'dpath':'./image/'
 }
 
