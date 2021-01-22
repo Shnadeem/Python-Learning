@@ -92,7 +92,7 @@ def get_image_url(driver, start, limit,result_loc, image_loc):
         driver.execute_script("document.querySelector('.mye4qd').click();")
         time.sleep(1)
         start = len(image_url)
-        get_image_url(driver, start, limit)
+        get_image_url(driver, start, limit, result_loc, image_loc)
     return image_url, driver
 
 # Downloding the image and saving it to created path
