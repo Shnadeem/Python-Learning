@@ -12,7 +12,7 @@ apps_param = {
     'search_url':'https://www.google.com.sa/imghp?',
     'result_locator':'img.Q4LuWd',
     'image_url_locator':'img.n3VNCb',
-    'search':'Eagle',
+    'search':'Dog',
     'limit':5,
     'dpath':'./image/'
 }
@@ -84,7 +84,7 @@ def get_image_url(driver, start, limit,result_loc, image_loc):
                 image_url.add(image.get_attribute('src'))
                 #print("URL:", image.get_attribute('src'))
         url_found = len(image_url)
-        if url_found > int(limit):  # this is to get one extra url
+        if url_found >= int(limit):  # this is to get one extra url
             #print("{} images found".format(url_found))
             break
     else:
