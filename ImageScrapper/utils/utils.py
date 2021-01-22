@@ -96,12 +96,13 @@ def get_image_url(driver, start, limit,result_loc, image_loc):
     return image_url, driver
 
 # Downloding the image and saving it to created path
-def image_download(driver,image_url,location):
+def image_download(driver,image_url,location,limit):
     i=0
     for img in image_url:
         try:
-            urlretrieve(img, location + str(int(time.time())) + "_" + str(i) + ".jpg")
-            i += 1
+            if i <= int(limit): # This is to avoid extra download as we have taken one extra url
+                urlretrieve(img, location + str(int(time.time())) + "_" + str(i) + ".jpg")
+                i += 1
         except:
             continue
     driver.quit()
