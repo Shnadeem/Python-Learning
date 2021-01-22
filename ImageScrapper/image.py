@@ -40,3 +40,7 @@ print("{} images of {} downloaded successfully.".format(download,apps_param['sea
 #     python image.py
 # 5.2 With override parameter
 #     python image.py -s Dog -l 5  (download 5 images of Dog)
+# Sample Execution
+# (imageScrapper) E:\Python\iNeuron\Scrapper\Image\imageScrapper>python image.py -l 10 -s Lion
+# ./image/Lion/ Directory created successfully
+# 10 images of Lion downloaded successfully.
