@@ -29,13 +29,13 @@ print("{} images of {} downloaded successfully.".format(download,apps_param['sea
 #2. Open terminal of this new invironment and run requirements.txt file (pip install -r requirements.txt)
 #3. download the files and folder structure as given here. Place it at home folder of your new vertual environment
 #4. Default configurations:
-# 4.1 Seach: Eagle
+# 4.1 Seach: Dog
 # 4.2 Limit: 5
 #5. Below are syntax to be executed for this code to run
 # 5.1 With default parameter
 #     python image.py
 # 5.2 With override parameter
-#     python image.py -s Dog -l 10  (download 10 images of Dog)
+#     python image.py -s Cat -l 10  (download 10 images of Cat)
 # Sample Execution
 #   (imageScrapper) E:\Python\iNeuron\Scrapper\Image\imageScrapper>python image.py -l 10 -s Lion
 #   ./image/Lion/ Directory created successfully
