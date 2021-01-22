@@ -3,7 +3,9 @@ from urllib.request import urlretrieve
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import sys, os, getopt
+import os, getopt
+
+image_url = set()
 
 # Default parameters, which either can be change during the execution (search and limit) or manually (rest)
 apps_param = {
@@ -51,43 +53,57 @@ def create_path(path):
         print(str(e))
         return
 
-# Fetching the final url for image after searching over google image
-def get_image_url(driver, search_url,result_locator, image_url_locator, search):
+
+# Get the search result page
+def get_driver(driver, search_url,search):
     driver.get(search_url)
     search_elem = driver.find_element_by_name("q")
     search_elem.clear()
     search_elem.send_keys(search)
     search_elem.submit()
-    # Wait, until the search completes
-    WebDriverWait(driver, 10).until( EC.visibility_of_element_located((By.CSS_SELECTOR, result_locator)))
 
-    # Get the url for each result image
-    result_urls = driver.find_elements(By.CSS_SELECTOR, result_locator)
-    image_url=[]
-    for result in result_urls:       # looping through results
+    # Wait, until the search completes
+    WebDriverWait(driver, 10).until( EC.visibility_of_element_located((By.CSS_SELECTOR, 'img.Q4LuWd')))
+    return driver
+
+# Fetching the final url for image after searching over google image
+def get_image_url(driver, start, limit,result_loc, image_loc):
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    result_urls = driver.find_elements(By.CSS_SELECTOR, result_loc)
+    end = len(result_urls)
+
+    for result in result_urls[start:end]:  # looping through results
         try:
             result.click()
             time.sleep(1)
         except:
             continue
-        image_block = driver.find_elements(By.CSS_SELECTOR,image_url_locator)
+        image_block = driver.find_elements(By.CSS_SELECTOR, image_loc)
         for image in image_block:
-            if image.get_attribute('src') and 'http' in image.get_attribute('src'):
-                image_url.append(image.get_attribute('src'))
-                #print(image)
-    return image_url
+            if image.get_attribute('src') and 'http' in image.get_attribute('src') and '.jpg' in image.get_attribute('src'):
+                image_url.add(image.get_attribute('src'))
+                #print("URL:", image.get_attribute('src'))
+        url_found = len(image_url)
+        if url_found > int(limit):  # this is to get one extra url
+            #print("{} images found".format(url_found))
+            break
+    else:
+        print("{} images has been found. Loading more images".format(url_found))
+        driver.execute_script("document.querySelector('.mye4qd').click();")
+        time.sleep(1)
+        start = len(image_url)
+        get_image_url(driver, start, limit)
+    return image_url, driver
 
 # Downloding the image and saving it to created path
-def image_download(driver,image_url,limit,location):
-    i = 0
+def image_download(driver,image_url,location):
+    i=0
     for img in image_url:
         try:
             urlretrieve(img, location + str(int(time.time())) + "_" + str(i) + ".jpg")
+            i += 1
         except:
             continue
-        else:
-            i += 1
-            if i >= int(limit):
-                driver.quit()
-                return i
+    driver.quit()
+    return i
 
