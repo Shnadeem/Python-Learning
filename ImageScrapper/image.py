@@ -26,7 +26,7 @@ print("{} images of {} downloaded successfully.".format(download,apps_param['sea
 
 ## Execution
 #1. Create project in PyCharm with conda (virtual environment) python 3.8
-#2. Open terminal of this new invironment and run requirements.txt file (pip install -r requirements.txt)
+#2. Open terminal of this new environment and run requirements.txt file (pip install -r requirements.txt)
 #3. download the files and folder structure as given here. Place it at home folder of your new vertual environment
 #4. Default configurations:
 # 4.1 Seach: Dog
