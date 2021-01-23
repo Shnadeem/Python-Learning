@@ -100,7 +100,7 @@ def image_download(driver,image_url,location,limit):
     i=0
     for img in image_url:
         try:
-            if i <= int(limit): # This is an extra check (even though it is not needed)
+            if i < int(limit): # This is an extra check (even though it is not needed)
                 urlretrieve(img, location + str(int(time.time())) + "_" + str(i) + ".jpg")
                 i += 1
         except:
