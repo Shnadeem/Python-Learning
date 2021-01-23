@@ -19,7 +19,7 @@ start = 0
 driver = webdriver.Firefox(executable_path = './geckodriver.exe')
 driver = get_driver(driver, apps_param['search_url'],apps_param['search'])
 image_url,driver = get_image_url(driver,start, apps_param['limit'], apps_param['result_locator'], apps_param['image_url_locator'] )
-download = image_download(driver,image_url, apps_param['dpath'])
+download = image_download(driver,image_url, apps_param['dpath'], apps_param['limit'])
 
 print("{} images of {} downloaded successfully.".format(download,apps_param['search']))
 
